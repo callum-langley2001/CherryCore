@@ -19,15 +19,12 @@ use PDOException;
 class DBConnectionException extends PDOException
 {
     /**
-     * @var $message The message of the exception 
+     * Main constructor for the DBConnectionException class.
+     * Overrides the parent constructor to set the message and code which are optional
+     * 
+     * @param string $message (optional) The message of the exception
+     * @param int $code (optional) The code of the exception
      */
-    protected $message;
-
-    /**
-     * @var $code The code of the exception
-     */
-    protected $code;
-
     public function __construct($message = null, $code = null)
     {
         $this->message = $message;

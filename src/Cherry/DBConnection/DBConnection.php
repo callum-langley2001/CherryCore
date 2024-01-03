@@ -61,11 +61,11 @@ class DBConnection implements DBConnectionInterface
                 $this->credentials['password'],
                 $options,
             );
-
-            return $this->dbh;
         } catch (PDOException $e) {
             throw new DBConnectionException($e->getMessage(), (int)$e->getCode());
         }
+
+        return $this->dbh;
     }
 
     /**
