@@ -10,9 +10,13 @@ use Exception;
  * 
  * @package Cherry
  * @subpackage Router
- * @author Callum Langley <callumlangley9@gmail.com>
- * @link https://github.com/callum-langley/CherryCore
+ * @author Callum Langley <callumlangley9@gmailcom>
+ * @license MIT
+ * @version 1.0.0
+ * @since 1.0.0
  * @implements RouterInterface
+ * @see RouterInterface
+ * @see RouterException
  */
 class Router implements RouterInterface
 {

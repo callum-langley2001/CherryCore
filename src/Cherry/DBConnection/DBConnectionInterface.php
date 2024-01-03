@@ -10,6 +10,9 @@ use PDO;
  * @package Cherry
  * @subpackage DBConnection
  * @author Callum Langley <callumlangley9@gmailcom>
+ * @license MIT
+ * @version 1.0.0
+ * @since 1.0.0
  */
 interface DBConnectionInterface
 {

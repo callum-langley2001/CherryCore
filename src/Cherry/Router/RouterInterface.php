@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Cherry\Router;
 
@@ -8,7 +8,9 @@ namespace Cherry\Router;
  * @package Cherry
  * @subpackage Router
  * @author Callum Langley <callumlangley9@gmail.com>
- * @link https://github.com/callum-langley/CherryCore
+ * @license MIT
+ * @version 1.0.0
+ * @since 1.0.0
  */
 interface RouterInterface
 {
@@ -28,5 +30,5 @@ interface RouterInterface
      * @param string $url The url to dispatch
      * @return void
      */
-    public function dispatch(string $url) : void;
+    public function dispatch(string $url): void;
 }

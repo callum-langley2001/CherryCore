@@ -2,6 +2,9 @@
 
 namespace Cherry\DBConnection;
 
+use DBConnection\DBConnectionInterface;
+use PDO;
+
 /**
  * DBConnection class
  * 
@@ -15,6 +18,15 @@ namespace Cherry\DBConnection;
  * @see DBConnectionInterface
  * @see DBConnectionException
  */
-class DBConnection
+class DBConnection implements DBConnectionInterface
 {
+    /**
+     * @var PDO $pdo
+     */
+    protected PDO $pdo;
+
+    /**
+     * @var array $credentials
+     */
+    protected array $credentials;
 }
