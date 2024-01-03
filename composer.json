@@ -1,14 +1,48 @@
 {
   "name": "cherrycake/cherrycore",
   "description": "A Simple PHP framework for web development",
+  "keywords": [
+    "framework",
+    "web development",
+    "php",
+    "cherrycore",
+    "cherry"
+  ],
   "type": "library",
   "license": "MIT",
+  "readme": "",
+  "time": "",
+  "support": {
+    "issues": "https://github.com/callum-langley2001/CherryCore/issues",
+    "source": "https://github.com/callum-langley2001/CherryCore",
+    "wiki": "https://github.com/callum-langley2001/CherryCore/wiki",
+    "email": "callumlangley9@gmail.com"
+  },
   "authors": [
     {
       "name": "Callum Langley",
-      "email": "callumlangley9@gmail.com"
+      "email": "callumlangley9@gmail.com",
+      "role": "Developer"
     }
   ],
   "minimum-stability": "alpha",
-  "require": {}
+  "require": {
+    "php": "^8.2",
+    "ext-mbstring": "*",
+    "ext-iconv": "*",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "ext-curl": "*",
+    "ext-simplexml": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cherry\\": "src/Cherry/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Cherry\\Tests\\": "tests/"
+    }
+  }
 }

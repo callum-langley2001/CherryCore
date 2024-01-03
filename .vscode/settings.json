@@ -1,0 +1,6 @@
+{
+  "php-implementor.useComposerAutoloads": true,
+  "php-implementor.autoloads": {
+    "Cherry\\": "src/Cherry/"
+  }
+}
