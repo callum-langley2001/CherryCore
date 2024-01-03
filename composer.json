@@ -1,0 +1,14 @@
+{
+  "name": "cherrycake/cherrycore",
+  "description": "A Simple PHP framework for web development",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Callum Langley",
+      "email": "callumlangley9@gmail.com"
+    }
+  ],
+  "minimum-stability": "alpha",
+  "require": {}
+}
