@@ -1,26 +1,26 @@
 <?php
 
-namespace Cherry\DBConnection\Exception;
+namespace Cherry\BakeORM\DataMapper\Exception;
 
-use PDOException;
+use Exception;
 
 /**
- * DBConnectionException class
+ * DataMapperException class
  * 
  * @package Cherry
- * @subpackage DBConnection\Exception
+ * @subpackage BakeORM\DataMapper\Exception
  * @author Callum Langley <callumlangley9@gmail.com>
  * @license MIT
  * @version 1.0.0
  * @since 1.0.0
- * @extends PDOException
- * @see PDOException
+ * @extends Exception
+ * @see Exception
  */
-class DBConnectionException extends PDOException
+class DataMapperException extends Exception
 {
     /**
-     * Main constructor for the DBConnectionException class.
-     * Overrides the parent constructor to set the message and code which are Optional
+     * Main constructor for the DataMapperException class.
+     * Overrides the parent constructor to set the message and code which are optional
      * 
      * @param string $message (Optional) The message of the exception
      * @param int $code (Optional) The code of the exception
