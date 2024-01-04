@@ -2,5 +2,6 @@
   "php-implementor.useComposerAutoloads": true,
   "php-implementor.autoloads": {
     "Cherry\\": "src/Cherry/"
-  }
+  },
+  "php.version": "8.3"
 }
