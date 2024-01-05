@@ -93,8 +93,8 @@ interface CrudInterface
      * Run a raw query
      * 
      * @param string $sql
-     * @param array $conditions (Optional) The conditions
+     * @param array|null $conditions (Optional) The conditions
      * @return ?
      */
-    public function rawQuery(string $sql, array $conditions = []);
+    public function rawQuery(string $sql, ?array $conditions = []);
 }

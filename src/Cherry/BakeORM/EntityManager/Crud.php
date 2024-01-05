@@ -213,6 +213,14 @@ class Crud implements CrudInterface
         return false;
     }
 
+    /**
+     * Retrieves data from the table based on the given selectors and conditions.
+     *
+     * @param array $selectors (Optional) An array of columns to select from the table.
+     * @param array $conditions (Optional) An array of conditions to filter the results.
+     * @throws Throwable If an error occurs during the execution of the function.
+     * @return array The retrieved data from the table.
+     */
     public function search($selectors = [], $conditions = []): array
     {
         try {
@@ -231,11 +239,30 @@ class Crud implements CrudInterface
         return [];
     }
 
-    public function rawQuery(string $query, ?array $params = []): array
+    /**
+     * Execute a raw SQL query.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array|null $conditions Optional conditions for the query.
+     * @throws Throwable If an error occurs during the query execution.
+     * @return array An empty array.
+     */
+    public function rawQuery(string $sql, ?array $conditions = [])
     {
-
-
-
+        try {
+            $args = [
+                'table' => $this->tableSchema,
+                'type' => 'raw',
+                'raw' => $sql,
+                'conditions' => $conditions,
+            ];
+            $query = $this->queryBuilder->buildQuery($args)->rawQuery();
+            $this->dataMapper->persist($query, $this->dataMapper->buildQueryParams($conditions));
+            if ($this->dataMapper->numRows()) {
+            }
+        } catch (Throwable $th) {
+            throw $th;
+        }
         return [];
     }
 }
