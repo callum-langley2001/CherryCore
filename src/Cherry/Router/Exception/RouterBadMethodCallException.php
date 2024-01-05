@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Cherry\BakeORM\QueryBuilder\Exception;
+namespace Cherry\Router\Exception;
 
-use Exception;
+use BadMethodCallException;
 
 /**
- * QueryBuilderException class
+ * RouterBadMethodCallException class
  * 
  * @package Cherry
- * @subpackage BakeORM\QueryBuilder\Exception
+ * @subpackage Router\Exception
  * @author Callum Langley <callumlangley9@gmail.com>
  * @license MIT
  * @version 1.0.0
  * @since 1.0.0
- * @extends Exception
- * @see Exception
+ * @extends BadMethodCallException
+ * @see BadMethodCallException
  */
-class QueryBuilderException extends Exception
+class RouterBadMethodCallException extends BadMethodCallException
 {
     /**
-     * Main constructor for the QueryBuilderException class.
-     * Overrides the parent constructor to set the message and code which are optional
+     * Main constructor for the RouterBadMethodCallException class.
+     * Overrides the parent constructor to set the message and code which are Optional
      * 
      * @param string $message (Optional) The message of the exception
      * @param int $code (Optional) The code of the exception

@@ -54,9 +54,9 @@ interface DataMapperInterface
     /**
      * Executes the query
      * 
-     * @return void 
+     * @return mixed The result
      */
-    public function execute(): bool;
+    public function execute(): mixed;
 
     /**
      * Returns the result of the query

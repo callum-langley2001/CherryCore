@@ -57,7 +57,7 @@ class QueryBuilder implements QueryBuilderInterface
         'raw' => '',
     ];
 
-    protected const QUERY_TYPES = ['insert', 'select', 'update', 'delete', 'raw'];
+    protected const QUERY_TYPES = ['insert', 'select', 'update', 'delete', 'search', 'raw'];
 
     public function __construct()
     {
@@ -149,9 +149,10 @@ class QueryBuilder implements QueryBuilderInterface
                 is_array($this->key['fields'])
                 && count($this->key['fields']) > 0
             ) {
+                $values = '';
                 foreach ($this->key['fields'] as $field) {
                     if ($field !== $this->key['primary_key']) {
-                        $values = "{$field} = :{$field}, ";
+                        $values .= "{$field} = :{$field}, ";
                     }
                 }
                 $values = substr_replace($values, '', -2);
@@ -194,6 +195,16 @@ class QueryBuilder implements QueryBuilderInterface
             }
             return $this->sqlQuery;
         }
+        return '';
+    }
+
+    public function searchQuery(): string
+    {
+        return '';
+    }
+
+    public function rawQuery(): string
+    {
         return '';
     }
 

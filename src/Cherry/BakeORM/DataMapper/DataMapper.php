@@ -49,7 +49,6 @@ class DataMapper implements DataMapperInterface
         $this->dbh = $dbh;
     }
 
-
     /**
      * Checks if a value is empty and throws an exception if it is.
      *
@@ -159,7 +158,7 @@ class DataMapper implements DataMapperInterface
     }
 
     /** @inheritDoc **/
-    public function execute(): bool
+    public function execute(): mixed
     {
         if ($this->stmt) return $this->stmt->execute();
 
@@ -204,6 +203,37 @@ class DataMapper implements DataMapperInterface
             }
 
             return 0;
+        } catch (Throwable $th) {
+            throw $th;
+        }
+    }
+
+    /**
+     * Builds the query parameters based on the given conditions and parameters.
+     *
+     * @param array $conditions (Optional) The conditions for the query.
+     * @param array $parameters (Optional) The parameters for the query.
+     * @return array The merged array of conditions and parameters, or the original parameters if they are empty.
+     */
+    public function buildQueryParams(array $conditions = [], array $parameters = []): array
+    {
+        return (!empty($parameters) || !empty($conditions))
+            ? array_merge($conditions, $parameters)
+            : $parameters;
+    }
+
+    /**
+     * Executes a SQL query with the given parameters and returns the result.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array $params The parameters to bind to the query.
+     * @throws Throwable if an error occurs during execution.
+     * @return mixed The result of the query execution.
+     */
+    public function persist(string $sql, array $params): mixed
+    {
+        try {
+            return $this->prepare($sql)->bindParams($params)->execute();
         } catch (Throwable $th) {
             throw $th;
         }

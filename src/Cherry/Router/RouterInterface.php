@@ -20,10 +20,10 @@ interface RouterInterface
      * Add a route to the router
      * 
      * @param string $route The route to add
-     * @param array $params The route parameters
+     * @param array $params (Optional) The route parameters
      * @return void 
      */
-    public function add(string $route, array $params): void;
+    public function add(string $route, array $params = []): void;
 
     /**
      * Disaptch the route and create a controller object.

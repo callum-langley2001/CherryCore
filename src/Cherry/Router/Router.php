@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Cherry\Router;
 
+use Cherry\Router\Exception\RouterBadMethodCallException;
 use Cherry\Router\RouterInterface;
-use Exception;
 
 /**
  * Class Router
@@ -18,7 +18,7 @@ use Exception;
  * @since 1.0.0
  * @implements RouterInterface
  * @see RouterInterface
- * @see RouterException
+ * @see RouterBadMethodCallException
  */
 class Router implements RouterInterface
 {
@@ -41,7 +41,7 @@ class Router implements RouterInterface
     /**
      * @inheritDoc
      */
-    public function add(string $route, array $params): void
+    public function add(string $route, array $params = []): void
     {
         $this->routes[$route] = $params;
     }
@@ -64,13 +64,13 @@ class Router implements RouterInterface
                 if (\is_callable([$controllerObject, $action])) {
                     $controllerObject->$action();
                 } else {
-                    throw new Exception("Method $action in controller $controllerString not found");
+                    throw new RouterBadMethodCallException("Method $action in controller $controllerString not found");
                 }
             } else {
-                throw new Exception("Controller class $controllerString not found");
+                throw new RouterBadMethodCallException("Controller class $controllerString not found");
             }
         } else {
-            throw new Exception('No route matched', 404);
+            throw new RouterBadMethodCallException('No route matched', 404);
         }
     }
 
