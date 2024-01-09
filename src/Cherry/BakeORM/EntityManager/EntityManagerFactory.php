@@ -64,7 +64,7 @@ class EntityManagerFactory
         string $tableSchemaID,
         array $options = []
     ): EntityManagerInterface {
-        $crudObject = (new $crudString($this->dataMapper, $this->queryBuilder, $tableSchema, $tableSchemaID));
+        $crudObject = (new $crudString($this->dataMapper, $this->queryBuilder, $tableSchema, $tableSchemaID, $options));
 
         if (!$crudObject instanceof CrudInterface) {
             throw new CrudException("{$crudString} is not a valid CRUD object");
