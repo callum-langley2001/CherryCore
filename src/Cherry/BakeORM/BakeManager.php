@@ -8,8 +8,8 @@ use Cherry\BakeORM\EntityManager\EntityManagerFactory;
 use Cherry\BakeORM\QueryBuilder\QueryBuilderFactory;
 use Cherry\BakeORM\DataMapper\DataMapperEnvConfig;
 use Cherry\BakeORM\DataMapper\DataMapperFactory;
-use Cherry\BakeORM\EntityManager\Crud;
 use Cherry\BakeORM\QueryBuilder\QueryBuilder;
+use Cherry\BakeORM\EntityManager\Crud;
 use Cherry\DBConnection\DBConnection;
 
 /**
