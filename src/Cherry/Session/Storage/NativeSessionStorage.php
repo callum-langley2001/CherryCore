@@ -7,7 +7,7 @@ namespace Cherry\Session\Storage;
 use Cherry\Session\Storage\AbstractSessionStorage;
 
 /**
- * Class Session
+ * Class NativeSessionStorage
  * 
  * @package Cherry
  * @subpackage Session\Storage
@@ -17,6 +17,7 @@ use Cherry\Session\Storage\AbstractSessionStorage;
  * @since 1.0.0
  * @extends AbstractSessionStorage
  * @see AbstractSessionStorage
+ * @see SessionStorageInterface
  */
 class NativeSessionStorage extends AbstractSessionStorage
 {

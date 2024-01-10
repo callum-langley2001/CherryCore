@@ -7,7 +7,7 @@ namespace Cherry\Session\Storage;
 use Cherry\Session\Storage\SessionStorageInterface;
 
 /**
- * Class Session
+ * Abstract Class AbstractSessionStorage
  * 
  * @package Cherry
  * @subpackage Session\Storage
@@ -32,10 +32,20 @@ abstract class AbstractSessionStorage implements SessionStorageInterface
      * Constructs a new instance of the class.
      *
      * @param array $options (Optional) An array of options for the constructor.
+     * @return void
      */
     public function __construct(array $options = [])
     {
         $this->options = $options;
+
+        $this->iniSet();
+
+        if ($this->isSessionStarted()) {
+            session_unset();
+            session_destroy();
+        }
+
+        $this->start();
     }
 
     /**
@@ -78,5 +88,71 @@ abstract class AbstractSessionStorage implements SessionStorageInterface
     public function getSessionId(): string
     {
         return (string)session_id();
+    }
+
+    /**
+     * Sets the configuration options for the PHP session.
+     * 
+     * @return void
+     */
+    public function iniSet(): void
+    {
+        ini_set('session.gc_maxlifetime', $this->options['gc_maxlifetime']);
+        ini_set('session.gc_divisor', $this->options['gc_divisor']);
+        ini_set('session.gc_probability', $this->options['gc_probability']);
+        ini_set('session.cookie_lifetime', $this->options['cookie_lifetime']);
+        ini_set('session.use_cookies', $this->options['use_cookies']);
+    }
+
+    /**
+     * Checks if a session has been started.
+     *
+     * @return bool Returns true if a session has been started, false otherwise.
+     */
+    public function isSessionStarted(): bool
+    {
+        return php_sapi_name() !== 'cli'
+            ? $this->getSessionId() !== ''
+            : false;
+    }
+
+    /**
+     * Starts a session.
+     *
+     * @return void
+     */
+    public function startSession(): void
+    {
+        if (session_status() == PHP_SESSION_NONE) session_start();
+    }
+
+    /**
+     * Starts the session.
+     *
+     * @return void
+     */
+    public function start()
+    {
+        $this->setSessionName($this->options['session_name']);
+        $domain = (
+            isset($this->options['domain'])
+            ? $this->options['domain']
+            : isset($_SERVER['SERVER_NAME'])
+        );
+        $secure = (
+            isset($this->options['secure'])
+            ? $this->options['secure']
+            : isset($_SERVER['HTTPS'])
+        );
+
+        session_set_cookie_params(
+            $this->options['lifetime'],
+            $domain,
+            $this->options['path'],
+            $secure,
+            $this->options['httponly']
+        );
+
+        $this->startSession();
     }
 }
