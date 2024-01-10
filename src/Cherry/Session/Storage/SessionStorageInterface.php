@@ -86,7 +86,7 @@ interface SessionStorageInterface
      * 
      * @return void No return
      */
-    public function invalidateSession(): void;
+    public function invalidate(): void;
 
     /**
      * Flush a value from the session

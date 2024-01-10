@@ -23,12 +23,34 @@ use Throwable;
  */
 class Session implements SessionInterface
 {
+    /**
+     * The session storage.
+     * 
+     * @var SessionStorageInterface $storage Session storage.
+     */
     protected SessionStorageInterface $storage;
 
+    /**
+     * The name of the session.
+     * 
+     * @var string $sessionName Session name.
+     */
     protected string $sessionName;
 
+    /**
+     * The pattern used to validate session keys.
+     * 
+     * @var string $SESSION_PATTERN Pattern used to validate session keys.
+     */
     protected const SESSION_PATTERN = '/^[a-zA-Z0-9_\.]{1,64}$/';
 
+    /**
+     * Initializes a new instance of the class.
+     *
+     * @param string $sessionName The name of the session.
+     * @param SessionStorageInterface|null $storage (Optional) The session storage implementation.
+     * @throws SessionInvalidArgumentException If the session name is invalid.
+     */
     public function __construct(string $sessionName, SessionStorageInterface $storage = null)
     {
         if ($this->isSessionKeyValid($sessionName) === false) {
@@ -79,7 +101,7 @@ class Session implements SessionInterface
      * Retrieves the value associated with the given key from the session storage.
      *
      * @param string $key The key to retrieve the value for.
-     * @param mixed $default The default value to return if the key does not exist.
+     * @param mixed $default (Optional) The default value to return if the key does not exist.
      * @throws SessionException An exception occurred while getting the session.
      * @return mixed The value associated with the given key, or the default value if the key does not exist.
      */
@@ -118,7 +140,7 @@ class Session implements SessionInterface
      */
     public function invalidate(): void
     {
-        $this->storage->invalidateSession();
+        $this->storage->invalidate();
     }
 
     /**
