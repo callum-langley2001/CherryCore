@@ -10,7 +10,7 @@ use InvalidArgumentException;
  * QueryBuilderInvalidArgumentException class
  * 
  * @package Cherry
- * @subpackage BakeORM\QueryBuilder\InvalidArgumentException
+ * @subpackage BakeORM\QueryBuilder\Exception
  * @author Callum Langley <callumlangley9@gmail.com>
  * @license MIT
  * @version 1.0.0

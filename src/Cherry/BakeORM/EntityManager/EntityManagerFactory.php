@@ -52,19 +52,19 @@ class EntityManagerFactory
      * Creates a new entity manager based on the given CRUD string, table schema, and table schema ID.
      *
      * @param string $crudString The fully qualified class name of the CRUD object.
-     * @param string $tableSchema The schema of the table.
-     * @param string $tableSchemaID The ID of the table schema.
+     * @param string $tableName The schema of the table.
+     * @param string $tableIDColumn The ID of the table schema.
      * @param array $options (Optional) Additional options.
      * @throws CrudException If the CRUD object is not a valid instance of the CrudInterface.
      * @return EntityManagerInterface The created entity manager.
      */
     public function create(
         string $crudString,
-        string $tableSchema,
-        string $tableSchemaID,
+        string $tableName,
+        string $tableIDColumn,
         array $options = []
     ): EntityManagerInterface {
-        $crudObject = (new $crudString($this->dataMapper, $this->queryBuilder, $tableSchema, $tableSchemaID, $options));
+        $crudObject = (new $crudString($this->dataMapper, $this->queryBuilder, $tableName, $tableIDColumn, $options));
 
         if (!$crudObject instanceof CrudInterface) {
             throw new CrudException("{$crudString} is not a valid CRUD object");

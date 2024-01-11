@@ -28,16 +28,16 @@ class BakeManager
     /**
      * The table name for the Bake ORM.
      * 
-     * @var string $tableSchema The table schema
+     * @var string $tableName The table schema
      */
-    protected string $tableSchema;
+    protected string $tableName;
 
     /**
      * The table ID column for the Bake ORM.
      * 
-     * @var string $tableSchemaID The table schema ID
+     * @var string $tableIDColumn The table schema ID
      */
-    protected string $tableSchemaID;
+    protected string $tableIDColumn;
 
     protected ?array $options;
 
@@ -52,20 +52,20 @@ class BakeManager
      * Constructs a new instance of the class.
      *
      * @param DataMapperEnvConfig $envConfig The environment configuration object.
-     * @param string $tableSchema The table schema.
-     * @param string $tableSchemaID The table schema ID.
+     * @param string $tableName The table schema.
+     * @param string $tableIDColumn The table schema ID.
      * @param array|null $options The options array.
      * @return void
      */
     public function __construct(
         DataMapperEnvConfig $envConfig,
-        string $tableSchema,
-        string $tableSchemaID,
+        string $tableName,
+        string $tableIDColumn,
         ?array $options = null
     ) {
         $this->envConfig = $envConfig;
-        $this->tableSchema = $tableSchema;
-        $this->tableSchemaID = $tableSchemaID;
+        $this->tableSchema = $tableName;
+        $this->tableSchemaID = $tableIDColumn;
         $this->options = $options;
     }
 

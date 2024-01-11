@@ -23,16 +23,16 @@ class DataRepositoryFactory
     /**
      * The table name for the DataRepository.
      * 
-     * @var string $tableSchema The table schema
+     * @var string $tableName The table schema
      */
-    protected string $tableSchema;
+    protected string $tableName;
 
     /**
      * The table ID column for the DataRepository.
      * 
-     * @var string $tableSchemaID The table schema ID
+     * @var string $tableIDColumn The table schema ID
      */
-    protected string $tableSchemaID;
+    protected string $tableIDColumn;
 
     /**
      * The CRUD identifier for the DataRepository.
@@ -45,14 +45,14 @@ class DataRepositoryFactory
      * Constructor for the class.
      *
      * @param string $crudIdentifier The identifier for CRUD operations.
-     * @param string $tableSchema The schema of the table.
-     * @param string $tableSchemaID The ID of the table schema.
+     * @param string $tableName The schema of the table.
+     * @param string $tableIDColumn The ID of the table schema.
      */
-    public function __construct(string $crudIdentifier, string $tableSchema, string $tableSchemaID)
+    public function __construct(string $crudIdentifier, string $tableName, string $tableIDColumn)
     {
         $this->crudIdentifier = $crudIdentifier;
-        $this->tableSchema = $tableSchema;
-        $this->tableSchemaID = $tableSchemaID;
+        $this->tableSchema = $tableName;
+        $this->tableSchemaID = $tableIDColumn;
     }
 
     /**

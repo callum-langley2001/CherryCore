@@ -41,17 +41,17 @@ class Crud implements CrudInterface
      * The table schema
      * (Table name e.g. `users`)
      * 
-     * @var string $tableSchema The table schema
+     * @var string $tableName The table schema
      */
-    protected string $tableSchema;
+    protected string $tableName;
 
     /**
      * The table schema ID
      * (Table primary key e.g. `id`)
      * 
-     * @var string $tableSchemaID The table schema ID
+     * @var string $tableIDColumn The table schema ID
      */
-    protected string $tableSchemaID;
+    protected string $tableIDColumn;
 
     /**
      * The options
@@ -65,21 +65,21 @@ class Crud implements CrudInterface
      *
      * @param DataMapper $dataMapper The data mapper object.
      * @param QueryBuilder $queryBuilder The query builder object.
-     * @param string $tableSchema The table schema.
-     * @param string $tableSchemaID The table schema ID.
+     * @param string $tableName The table schema.
+     * @param string $tableIDColumn The table schema ID.
      * @return void
      */
     public function __construct(
         DataMapper $dataMapper,
         QueryBuilder $queryBuilder,
-        string $tableSchema,
-        string $tableSchemaID,
+        string $tableName,
+        string $tableIDColumn,
         ?array $options = []
     ) {
         $this->dataMapper = $dataMapper;
         $this->queryBuilder = $queryBuilder;
-        $this->tableSchema = $tableSchema;
-        $this->tableSchemaID = $tableSchemaID;
+        $this->tableSchema = $tableName;
+        $this->tableSchemaID = $tableIDColumn;
         $this->options = $options;
     }
 
