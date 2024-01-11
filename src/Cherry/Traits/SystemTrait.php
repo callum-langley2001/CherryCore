@@ -7,6 +7,7 @@ namespace Cherry\Traits;
 use Cherry\Base\Exception\BaseLogicException;
 use Cherry\GlobalManager\GlobalManager;
 use Cherry\Session\SessionManager;
+use Cherry\Session\Session;
 
 /**
  * Trait SystemTrait
@@ -20,7 +21,14 @@ use Cherry\Session\SessionManager;
  */
 trait SystemTrait
 {
-    public static function sessionInit(bool $useSessionGlobal = false)
+    /**
+     * Initializes the session.
+     *
+     * @param bool $useSessionGlobal (Optional) Determines if the session should be set as a global variable.
+     * @throws BaseLogicException If the session settings inside the session.yaml file are incorrect.
+     * @return Session|null The initialized session object.
+     */
+    public static function sessionInit(bool $useSessionGlobal = false): ?Session
     {
         $session = SessionManager::init();
 
