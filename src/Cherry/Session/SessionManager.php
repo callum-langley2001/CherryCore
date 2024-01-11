@@ -20,11 +20,11 @@ use Cherry\Session\SessionFactory;
 class SessionManager
 {
     /**
-     * Initializes the function.
+     * Initializes the class.
      *
      * @return mixed
      */
-    public function init(): mixed
+    public static function init(): mixed
     {
         $factory = new SessionFactory();
         return $factory->create(
