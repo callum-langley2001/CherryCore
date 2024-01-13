@@ -4,9 +4,14 @@ declare(strict_types=1);
 
 namespace Cherry\Base;
 
+use Cherry\Twig\CherryTwigExtension;
 use Twig\Extension\DebugExtension;
-use Twig\FilesystemLoader;
+use Twig\Loader\FilesystemLoader;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use Twig\Error\LoaderError;
 use Twig\Environment;
+use Exception;
 
 /**
  * Class BaseView
