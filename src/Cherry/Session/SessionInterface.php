@@ -65,7 +65,7 @@ interface SessionInterface
      * @param mixed $value The value to flush
      * @return void
      */
-    public function flush(string $key, mixed $value);
+    public function flush(string $key, mixed $value = null);
 
     /**
      * Check if the session has a value
