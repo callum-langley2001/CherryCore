@@ -30,11 +30,11 @@ class SessionFactory
      *
      * @param string $sessionName The name of the session.
      * @param string $storageString The string representation of the session storage class.
-     * @param array $options (Optional) Additional options for the session storage class. Default is an empty array.
+     * @param array|null $options (Optional) Additional options for the session storage class. Default is an empty array.
      * @throws SessionStorageInvalidArgumentException If the $storageString is not a valid session storage class.
      * @return SessionInterface The created session.
      */
-    public function create(string $sessionName, string $storageString, array $options = []): SessionInterface
+    public function create(string $sessionName, string $storageString, ?array $options = []): SessionInterface
     {
         $storageObject = new $storageString($options);
 

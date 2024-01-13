@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cherry;
+namespace Cherry\Yaml;
 
 use Symfony\Component\Yaml\Exception\ParseException;
 use Cherry\Base\Exception\BaseException;
