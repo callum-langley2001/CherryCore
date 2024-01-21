@@ -10,8 +10,5 @@ use Cherry\Session\SessionManager;
 
 $app = new Application(ROOT_DIR);
 $app->run()
-    ->setSession();
-
-$session = SessionManager::init();
-$session->set('foo', 'bar');
-echo $session->get('foo');
+    ->setSession()
+    ->setRouteHandler($_SERVER['QUERY_STRING']);

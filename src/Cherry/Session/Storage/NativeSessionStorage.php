@@ -24,11 +24,11 @@ class NativeSessionStorage extends AbstractSessionStorage
     /**
      * Constructs a new instance of the class.
      *
-     * @param array $options (Optional) An array of options for the constructor.
+     * @param array|null $options (Optional) An array of options for the constructor.
      * @return void
      * @see AbstractSessionStorage::__construct
      */
-    public function __construct(array $options = [])
+    public function __construct(?array $options = [])
     {
         parent::__construct($options);
     }

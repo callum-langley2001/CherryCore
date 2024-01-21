@@ -43,6 +43,8 @@ class Router implements RouterInterface
      */
     public function add(string $route, array $params = []): void
     {
+        $route = preg_replace('/\//', '\\/', $route);
+        $route = "/^$route$/i";
         $this->routes[$route] = $params;
     }
 
@@ -52,7 +54,7 @@ class Router implements RouterInterface
     public function dispatch(string $url): void
     {
         if ($this->match($url)) {
-            $controllerString = $this->params['controller'];
+            $controllerString = $this->params['controller'] . $this->suffix;
             $controllerString = $this->transformToUpperCamelCase($controllerString);
             $controllerString = $this->getNamespace($controllerString);
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cherry\Application;
 
+use Cherry\Router\RouterManager;
 use Cherry\Traits\SystemTrait;
 use Cherry\Application\Config;
 use Cherry\Yaml\YamlConfig;
@@ -19,6 +20,8 @@ use Cherry\Yaml\YamlConfig;
  */
 class Application
 {
+    use SystemTrait;
+
     /**
      * The application root
      * 
@@ -92,7 +95,20 @@ class Application
         set_exception_handler('Cherry\ErrorHandling\ErrorHandling::exceptionHandler');
     }
 
-    public function setSession()
+    /**
+     * Sets the session.
+     *
+     * @return self An instance of the class.
+     */
+    public function setSession(): self
     {
+        $this->sessionInit(true);
+        return $this;
+    }
+
+    public function setRouteHandler(string $url): self
+    {
+        RouterManager::dispatchRoute($url);
+        return $this;
     }
 }

@@ -37,7 +37,7 @@ class ErrorHandling
     ): void {
         if (!(error_reporting() && $severity)) return;
 
-        throw new ErrorException($message, 0, $file, $line);
+        throw new ErrorException($message, 0, E_ERROR, $file, $line);
     }
 
     public static function exceptionHandler($exception)
