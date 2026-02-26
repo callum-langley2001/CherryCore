@@ -1,0 +1,14 @@
+{
+    "name": "callum/cherrycore",
+    "description": "A simple PHP framework for building web applications",
+    "type": "library",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Callum Langley",
+            "email": "callumlangley9@gmail.com"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {}
+}
