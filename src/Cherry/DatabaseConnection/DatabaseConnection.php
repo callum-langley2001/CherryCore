@@ -14,7 +14,7 @@ class DatabaseConnection implements DatabaseConnectionInterface
      * The database handler
      * @var PDO
      */
-    protected PDO $dbh;
+    protected ?PDO $dbh;
 
     /**
      * The database credentials
@@ -53,6 +53,8 @@ class DatabaseConnection implements DatabaseConnectionInterface
         } catch (PDOException $exception) {
             throw new DatabaseConnectionException($exception->getMessage(), (int) $exception->getCode());
         }
+
+        return $this->dbh;
     }
 
     /**
