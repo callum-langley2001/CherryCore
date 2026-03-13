@@ -18,7 +18,7 @@ class DataMapperFactory
         $databaseConnectionObject = new $databaseConnectionString($credentials);
 
         if (!$databaseConnectionObject instanceof DatabaseConnectionInterface) {
-            throw new DataMapperException("$databaseConnectionString is not an instance of database connection object");
+            throw new DataMapperException("$databaseConnectionString is not a valid database connection object");
         }
 
         return new DataMapper($databaseConnectionObject);
