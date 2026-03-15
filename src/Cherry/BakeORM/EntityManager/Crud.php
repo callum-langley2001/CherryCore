@@ -229,18 +229,19 @@ class Crud implements CrudInterface
      * It returns the results of the query, or an empty array if no results are found.
      *
      * @param string $rawQuery The raw SQL query to execute
-     * @param array $conditions The conditions to filter the records by
+     * @param array|null $conditions The conditions to filter the records by
      * @return array The results of the query
      * @throws Throwable If any errors occur while preparing or executing the query
      */
-    public function rawQuery(string $rawQuery, array $conditions = [])
+    public function rawQuery(string $rawQuery, ?array $conditions = [])
     {
         try {
-            $this->dataMapper->persist($rawQuery, $this->dataMapper->buildQueryParameters($conditions));
+            $args = ['table' => $this->getSchema(), 'type' => 'raw', 'raw' => $rawQuery, 'conditions' => $conditions];
+            $query = $this->queryBuilder->buildQuery($args)->rawQuery();
+            $this->dataMapper->persist($query, $this->dataMapper->buildQueryParameters($conditions));
+
             if ($this->dataMapper->numRows() > 0) {
-                return $this->dataMapper->results();
             }
-            return [];
         } catch (Throwable $thorowable) {
             throw $thorowable;
         }
