@@ -11,4 +11,5 @@ enum QueryTypesEnum: string
     case UPDATE = 'update';
     case DELETE = 'delete';
     case RAW = 'raw';
+    case SEARCH = 'search';
 }

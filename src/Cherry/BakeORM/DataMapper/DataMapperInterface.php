@@ -23,7 +23,7 @@ interface DataMapperInterface
     public function bind(mixed $value): mixed;
 
     /**
-     * 
+     * Bind parameters
      *
      * @param array   $fields
      * @param boolean $isSearch
@@ -40,17 +40,15 @@ interface DataMapperInterface
 
     /**
      * Execute the query
-     *
-     * @return void
      */
-    public function execute(): void;
+    public function execute();
 
     /**
      * Fetch a single result
      *
-     * @return object
+     * @return ?object
      */
-    public function result(): object;
+    public function result(): ?object;
 
     /**
      * Fetch all results

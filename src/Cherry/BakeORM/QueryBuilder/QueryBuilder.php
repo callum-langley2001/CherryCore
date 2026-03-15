@@ -29,6 +29,7 @@ class QueryBuilder implements QueryBuilderInterface
     protected const SQL_DEFAULT = [
         'conditions' => [],
         'selectors' => [],
+        'parameters' => [],
         'replace' => false,
         'distinct' => false,
         'from' => [],
@@ -95,6 +96,7 @@ class QueryBuilder implements QueryBuilderInterface
     {
         if ($this->isQueryTypeValid('update')) {
             if (is_array($this->key['fields']) && count($this->key['fields']) > 0) {
+                $values = '';
                 foreach ($this->key['fields'] as $field) {
                     if ($field !== $this->key['primaryKey']) {
                         $values .= "$field = :$field, ";
@@ -143,6 +145,16 @@ class QueryBuilder implements QueryBuilderInterface
 
             return $this->sqlQuery;
         }
+        return '';
+    }
+
+    public function searchQuery(): string
+    {
+        return '';
+    }
+
+    public function rawQuery(): string
+    {
         return '';
     }
 

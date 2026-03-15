@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Cherry\BakeORM\DataMapper;
 
 use PDO;
-use stdClass;
 use Throwable;
 use PDOStatement;
 use Cherry\DatabaseConnection\DatabaseConnectionInterface;
-use Cherry\DatabaseConnection\Exception\DataMapperException;
+use Cherry\BakeORM\DataMapper\Exception\DataMapperException;
 
 class DataMapper implements DataMapperInterface
 {
@@ -118,9 +117,9 @@ class DataMapper implements DataMapperInterface
      *
      * @param array $fields The values to bind
      * @param bool $isSearch Whether to bind the values as search values (default: false)
-     * @return mixed The prepared statement with the bound values, or false if the binding failed
+     * @return ?self The DataMapper object, or null if the given value is not an array
      */
-    public function bindParameters(array $fields, bool $isSearch = false): mixed
+    public function bindParameters(array $fields, bool $isSearch = false): ?self
     {
         if (is_array($fields)) {
             $type = ($isSearch === false) ? $this->bindValues($fields) : $this->bindSearchValues($fields);
@@ -128,7 +127,7 @@ class DataMapper implements DataMapperInterface
                 return $this;
             }
         }
-        return false;
+        return null;
     }
 
     /**
@@ -167,14 +166,12 @@ class DataMapper implements DataMapperInterface
     /**
      * Executes the prepared statement
      *
-     * If the statement is not set, this method will do nothing.
-     *
-     * @return void
+     * This method executes the prepared statement and returns the result.
+     * If the prepared statement is empty, the method will return null.
      */
-    public function execute(): void
+    public function execute()
     {
-        if ($this->statement)
-            $this->statement->execute();
+        if ($this->statement) return $this->statement->execute();
     }
 
     /**
@@ -184,21 +181,19 @@ class DataMapper implements DataMapperInterface
      */
     public function numRows(): int
     {
-        if ($this->statement)
-            return $this->statement->rowCount();
+        if ($this->statement) return $this->statement->rowCount();
         return 0;
     }
 
     /**
      * Fetch a single result
      *
-     * @return object The result of the query
+     * @return ?object The result of the query
      */
-    public function result(): object
+    public function result(): ?object
     {
-        if ($this->statement)
-            return $this->statement->fetch(PDO::FETCH_OBJ);
-        return new stdClass();
+        if ($this->statement) return $this->statement->fetch(PDO::FETCH_OBJ);
+        return null;
     }
 
     /**
@@ -208,8 +203,7 @@ class DataMapper implements DataMapperInterface
      */
     public function results(): array
     {
-        if ($this->statement)
-            return $this->statement->fetchAll();
+        if ($this->statement) return $this->statement->fetchAll();
         return [];
     }
 
@@ -231,6 +225,43 @@ class DataMapper implements DataMapperInterface
                     return intval($lastId);
                 }
             }
+        } catch (Throwable $thorowable) {
+            throw $thorowable;
+        }
+        return 0;
+    }
+
+    /**
+     * Builds the query parameters for the given conditions and parameters.
+     *
+     * This method takes the given conditions and parameters, and merges them together into a single array.
+     * If either the conditions or parameters are empty, the method will return the other array.
+     * If both are empty, the method will return an empty array.
+     *
+     * @param array $conditions The conditions to merge
+     * @param array $parameters The parameters to merge
+     * @return array The merged query parameters
+     */
+    public function buildQueryParameters(array $conditions = [], array $parameters = []): array
+    {
+        return (!empty($parameters) || !empty($conditions)) ? array_merge($conditions, $parameters) : $parameters;
+    }
+
+    /**
+     * Persists the given data to the database using the given query and parameters.
+     *
+     * This method prepares the given query with the given parameters, binds the values to the prepared statement, and executes the query.
+     * If any errors occur while preparing or executing the query, the method will throw a Throwable.
+     *
+     * @param string $sqlQuery The SQL query to execute
+     * @param array $parameters The values to bind to the prepared statement
+     * @return ?void The result of the query
+     * @throws Throwable If any errors occur while preparing or executing the query
+     */
+    public function persist(string $sqlQuery, array $parameters): ?void
+    {
+        try {
+            return $this->prepare($sqlQuery)->bindParameters($parameters)->execute();
         } catch (Throwable $thorowable) {
             throw $thorowable;
         }
