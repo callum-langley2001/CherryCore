@@ -1,0 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Cherry\BakeORM\DataRepository\Exception;
+
+use InvalidArgumentException;
+
+class DataRepositoryInvalidArgumentException extends InvalidArgumentException {}

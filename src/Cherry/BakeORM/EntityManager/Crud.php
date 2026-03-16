@@ -67,7 +67,7 @@ class Crud implements CrudInterface
      */
     public function getSchemaID(): string
     {
-        return $this->tableSchemaID;
+        return (string) $this->tableSchemaID;
     }
 
     /**
