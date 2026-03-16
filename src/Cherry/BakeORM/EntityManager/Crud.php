@@ -35,19 +35,27 @@ class Crud implements CrudInterface
     protected string $tableSchemaID;
 
     /**
+     * The optional parameters
+     * @var array $options
+     */
+    protected array $options;
+
+    /**
      * Initializes the Crud object with the given DataMapper, QueryBuilder, table schema and table schema ID.
      *
      * @param DataMapper $dataMapper The DataMapper object to use
      * @param QueryBuilder $queryBuilder The QueryBuilder object to use
      * @param string $tableSchema The table schema
      * @param string $tableSchemaID The table schema ID
+     * @param array $options The optional parameters to use
      */
-    public function __construct(DataMapper $dataMapper, QueryBuilder $queryBuilder, string $tableSchema, string $tableSchemaID)
+    public function __construct(DataMapper $dataMapper, QueryBuilder $queryBuilder, string $tableSchema, string $tableSchemaID, ?array $options = [])
     {
         $this->dataMapper = $dataMapper;
         $this->queryBuilder = $queryBuilder;
         $this->tableSchema = $tableSchema;
         $this->tableSchemaID = $tableSchemaID;
+        $this->options = $options;
     }
 
     /**
